@@ -3,15 +3,17 @@ import { UsersRepository } from '@/repositories/users-repository'
 import { User } from '@prisma/client'
 import { UserEmailAlreadyExistsError } from './errors/user-email-already-exists-error'
 import { UserPhoneAlreadyExistsError } from './errors/user-phone-already-exists-error'
+import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
 interface RegisterUseCaseRequest {
   name: string
   email: string
   password: string
   phone: string
-  address: string
-  city: string
-  state: string
+  address?: string
+  city?: string
+  state?: string
+  role?: 'ADMIN' | 'CLIENT'
 }
 
 interface RegisterUseCaseResponse {
@@ -29,6 +31,7 @@ export class RegisterUseCase {
     address,
     city,
     state,
+    role,
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
     const password_hash = await hash(password, 6)
 
@@ -44,6 +47,10 @@ export class RegisterUseCase {
       throw new UserPhoneAlreadyExistsError()
     }
 
+    if (role === 'ADMIN' && (!address || !city || !state)) {
+      throw new InvalidCredentialsError()
+    }
+
     const user = await this.usersRepository.create({
       name,
       email,
@@ -52,6 +59,7 @@ export class RegisterUseCase {
       address,
       city,
       state,
+      role,
     })
 
     return { user }

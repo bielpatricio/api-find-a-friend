@@ -4,6 +4,7 @@ import { compare } from 'bcryptjs'
 import { inMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { UserEmailAlreadyExistsError } from './errors/user-email-already-exists-error'
 import { UserPhoneAlreadyExistsError } from './errors/user-phone-already-exists-error'
+import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
 let usersRepository: inMemoryUsersRepository
 let sut: RegisterUseCase
@@ -20,9 +21,6 @@ describe('Register Use Case', () => {
       name: 'John',
       password: '123456',
       phone: '123456789',
-      address: 'Rua Teste',
-      city: 'João Pessoa',
-      state: 'Paraíba',
     })
 
     const isPasswordCorrectlyHashed = await compare(
@@ -31,6 +29,35 @@ describe('Register Use Case', () => {
     )
 
     expect(isPasswordCorrectlyHashed).toBe(true)
+  })
+
+  it('should be able to register a user like org', async () => {
+    const { user } = await sut.execute({
+      email: 'john@test.com',
+      name: 'John',
+      password: '123456',
+      phone: '123456789',
+      address: 'Rua Teste',
+      city: 'João Pessoa',
+      state: 'Paraíba',
+      role: 'ADMIN',
+    })
+
+    expect(user.id).toEqual(expect.any(String))
+  })
+
+  it('should not be able to register a user like org without address', async () => {
+    await expect(() =>
+      sut.execute({
+        email: 'john@test.com',
+        name: 'John',
+        password: '123456',
+        phone: '123456789',
+        city: 'João Pessoa',
+        state: 'Paraíba',
+        role: 'ADMIN',
+      }),
+    ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 
   it('should not be able to register with same email twice', async () => {

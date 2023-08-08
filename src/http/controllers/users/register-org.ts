@@ -4,15 +4,18 @@ import { makeRegisterUseCase } from '@/use-cases/factories/make-register-use-cas
 import { UserEmailAlreadyExistsError } from '@/use-cases/errors/user-email-already-exists-error'
 import { UserPhoneAlreadyExistsError } from '@/use-cases/errors/user-phone-already-exists-error'
 
-export async function register(request: FastifyRequest, reply: FastifyReply) {
+export async function registerOrg(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
   const registerBodySchema = z.object({
     name: z.string(),
     email: z.string().email(),
     password: z.string().min(6).max(32),
     phone: z.string(),
-    address: z.string().optional(),
-    city: z.string().optional(),
-    state: z.string().optional(),
+    address: z.string(),
+    city: z.string(),
+    state: z.string(),
   })
 
   const { email, name, password, phone, address, city, state } =
@@ -29,6 +32,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       address,
       city,
       state,
+      role: 'ADMIN',
     })
 
     return reply.status(201).send()

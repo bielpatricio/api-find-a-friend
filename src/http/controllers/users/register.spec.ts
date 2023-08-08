@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { app } from '@/app'
 import request from 'supertest'
+import { prisma } from '@/lib/prisma'
 
 describe('Register (e2e)', () => {
   beforeAll(async () => {
@@ -17,11 +18,15 @@ describe('Register (e2e)', () => {
       email: 'JohnSnow@gameofthrones.com',
       password: '123456',
       phone: '123456789',
-      address: 'Rua Teste',
-      city: 'João Pessoa',
-      state: 'Paraíba',
     })
 
+    const user = await prisma.user.findFirstOrThrow()
+
     expect(response.status).toEqual(201)
+    expect(user).toEqual(
+      expect.objectContaining({
+        role: 'CLIENT',
+      }),
+    )
   })
 })

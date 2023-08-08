@@ -21,16 +21,17 @@ model User {
   email String @unique
   phone String @unique
 
-  address String
-  city    String
-  state   String
+  address String?
+  city    String?
+  state   String?
 
   role Role @default(CLIENT)
 
   password_hash String
-  created_at    DateTime @default(now())
-  updated_at    DateTime @updatedAt
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @updatedAt
   Pet           Pet[]
+  Adoption      Adoption[]
 
   @@map("users")
 }
@@ -44,9 +45,26 @@ model Pet {
   description String?
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
+  adopted     Boolean  @default(false)
 
-  USER    User   @relation(fields: [user_id], references: [id])
+  User    User   @relation(fields: [user_id], references: [id])
   user_id String
 
+  Adoption Adoption?
+
   @@map("pets")
+}
+
+model Adoption {
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  pet    Pet    @relation(fields: [pet_id], references: [id])
+  pet_id String @unique
+
+  @@map("adoptions")
 }
