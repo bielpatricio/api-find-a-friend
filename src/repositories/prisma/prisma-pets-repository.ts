@@ -38,7 +38,7 @@ export class PrismaPetsRepository implements PetsRepository {
             },
           },
         ],
-        adopted: false,
+        Adoption: undefined,
       },
       take: 20,
       skip: (page - 1) * 20,
@@ -64,7 +64,7 @@ export class PrismaPetsRepository implements PetsRepository {
         user_id: {
           in: users.map((user) => user.id),
         },
-        adopted: false,
+        Adoption: undefined,
       },
       take: 20,
       skip: (page - 1) * 20,

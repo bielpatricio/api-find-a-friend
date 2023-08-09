@@ -7,7 +7,7 @@ export async function getPetDetails(
   reply: FastifyReply,
 ) {
   const getPetDetailsSchema = z.object({
-    petId: z.string(),
+    petId: z.string().uuid(),
   })
 
   const { petId } = getPetDetailsSchema.parse(request.params)

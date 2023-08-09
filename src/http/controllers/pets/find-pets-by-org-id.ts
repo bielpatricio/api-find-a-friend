@@ -12,7 +12,7 @@ export async function findPetByOrgId(
   })
 
   const findPetParamsSchema = z.object({
-    orgId: z.string(),
+    orgId: z.string().uuid(),
   })
 
   const { adopted, page } = findPetQuerySchema.parse(request.query)
