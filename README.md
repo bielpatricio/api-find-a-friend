@@ -4,28 +4,29 @@
 
 <br />
 <div align="center">
-  <h1 align="center">Ignite Gym api</h3>
+  <h1 align="center">Find a Friend Api</h3>
 </div>
 
 <!-- TABLE OF CONTENTS -->
-
 ## Contents
 
 <p align="center">
-    <p><a href="#about-the-project" title=" go to About the Project">About The Project</a></p>
-    <p><a href="#running-locally" title=" go to Running locally">Running locally</a></p>
-    <p><a href="#routes" title=" go to Routes">Routes</a></p>
-    <p><a href="#contact" title=" go to Contact">Contact</a></p>
-  </p>
+  <p><a href="#about-the-project" title=" go to About the Project">About The Project</a></p>
+  <p><a href="#running-locally" title=" go to Running locally">Running locally</a></p>
+  <p><a href="#routes" title=" go to Routes">Routes</a></p>
+  <p><a href="#contact" title=" go to Contact">Contact</a></p>
+</p>
 
 <br>
 <!-- ABOUT THE PROJECT -->
 
 # About The Project
 
-Ignite gym api.
+Find a Friend Api.
+In this challenge I developed an API for animal adoption, a FindAFriend API, using SOLID and tests.
 
-GymPass style app. All Functional requirements, Business rules and Non-functional requirements were added.
+challenge link: https://efficient-sloth-d85.notion.site/Desafio-03-0b927eb32dbd4f21ab40224ffdf6cf19
+Base layout: https://www.figma.com/file/CTTHUAQJZJayjWBx51KB7v/Find-A-Friend-(APP)-(Community)?node-id=7%3A2&mode=dev
 
 ## RFs (Functional requirements)
 
@@ -58,9 +59,9 @@ GymPass style app. All Functional requirements, Business rules and Non-functiona
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/bielpatricio/api-ignite-gym
+$ git clone https://github.com/bielpatricio/api-find-a-friend
 # Access the project folder in your terminal
-$ cd api-ignite-gym
+$ cd api-find-a-friend
 # Install the dependencies
 $ npm i
 # Run the docker
