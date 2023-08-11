@@ -69,7 +69,8 @@ $ npm i
 $ docker compose up -d
 # Run the application in development mode
 $ npm run start:dev
-# You can have access of the register with prisma studio
+# You can have access of the registers with prisma studio
+# The application will runing on port 5555, so you can access the url http://localhost:5555/ to see the registers.
 $ npx prisma studio
 # The application will runing on port 3333, so you can access the url http://localhost:3333/ to do the requests.
 # Run the unit tests
