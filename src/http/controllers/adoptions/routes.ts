@@ -8,9 +8,17 @@ import { listAllByOrgId } from './list-all-by-org-id'
 export async function adoptionsRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyJWT)
 
-  app.get('/adoptions/:petId', findByPetId)
+  app.get(
+    '/adoptions/:petId',
+    { onRequest: [verifyUserRole('ADMIN')] },
+    findByPetId,
+  )
 
-  app.get('/adoptions', listAllByOrgId)
+  app.get(
+    '/adoptions',
+    { onRequest: [verifyUserRole('ADMIN')] },
+    listAllByOrgId,
+  )
 
   app.post(
     '/adoptions/:petId',
