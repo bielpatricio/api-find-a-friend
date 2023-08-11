@@ -14,6 +14,7 @@
   <p><a href="#about-the-project" title=" go to About the Project">About The Project</a></p>
   <p><a href="#running-locally" title=" go to Running locally">Running locally</a></p>
   <p><a href="#routes" title=" go to Routes">Routes</a></p>
+  <p><a href="#prints" title=" go to Prints">Prints</a></p>
   <p><a href="#contact" title=" go to Contact">Contact</a></p>
 </p>
 
