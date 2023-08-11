@@ -262,6 +262,9 @@ For the project, some routes were created:
 
 ![image](https://github.com/bielpatricio/api-find-a-friend/assets/32223762/d8407c54-6d0f-49c1-8029-f6222b1861c7)
 
+![image](https://github.com/bielpatricio/api-find-a-friend/assets/32223762/db2cda93-3b42-4304-ae11-b38fa98bb792)
+
+
 
 # Contact
 
