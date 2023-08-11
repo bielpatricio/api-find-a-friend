@@ -3,7 +3,6 @@ import { app } from '@/app'
 import request from 'supertest'
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user'
 import { prisma } from '@/lib/prisma'
-import { PetWasAlreadyAdoptedError } from '@/use-cases/errors/pet-was-already-adopted-error'
 
 describe('List adoptions by organization (e2e)', () => {
   beforeAll(async () => {

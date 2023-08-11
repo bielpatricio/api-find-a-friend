@@ -3,7 +3,6 @@ import { app } from '@/app'
 import request from 'supertest'
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user'
 import { prisma } from '@/lib/prisma'
-import { PetWasAlreadyAdoptedError } from '@/use-cases/errors/pet-was-already-adopted-error'
 
 describe('Adopt a pet (e2e)', () => {
   beforeAll(async () => {
@@ -15,7 +14,7 @@ describe('Adopt a pet (e2e)', () => {
   })
 
   it('should be able to find Adoption by pet id', async () => {
-    await createAndAuthenticateUser(app, true)
+    const { token } = await createAndAuthenticateUser(app, true)
 
     const user = await prisma.user.findFirstOrThrow()
 
@@ -32,7 +31,7 @@ describe('Adopt a pet (e2e)', () => {
 
     const pet = await prisma.pet.findFirstOrThrow()
 
-    const { token } = await createAndAuthenticateUser(
+    await createAndAuthenticateUser(
       app,
       false,
       'Gabriel',
